@@ -16,7 +16,7 @@ use App\Http\Controllers\ProductController;
 /*
 API Resource untuk model Product
 */
-// 1. ambil semua data porduck beserta pemiliknya (user)
+// route ambil semua data porduck beserta pemiliknya (user)
 // action url = [NameController::Class, 'method']
 Route::get('/products/semuanya', [ProductController::class,'index']);
 
