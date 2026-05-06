@@ -30,7 +30,8 @@ class ProfileUpdateRequest extends FormRequest
                 'max:1024',
             ],
             'address' => 'required',
-            // lanjutkan untuk update data profil (foto dll)....
+            'gender' => 'required',
+
             'email' => [
                 'required',
                 'string',
