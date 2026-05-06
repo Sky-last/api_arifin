@@ -12,6 +12,7 @@ use Illuminate\View\View;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\Format;
+use Intervention\Image\Typography\FontFactory;
 
 class ProfileController extends Controller
 {
@@ -20,6 +21,17 @@ class ProfileController extends Controller
         $user = Auth::user();
         $image = Image::createImage(800 ,450)
         ->fill('ff0000');
+
+        $foto = Image::decode(Storage::disk('public')->path($user->photo_path));
+        $foto->resize(300,300);
+        $foto->insert($foto, 20,20);
+
+        $image->text($user->name, 350, 40, function(FontFactory $font){
+            $font->size(170);
+        });
+        $image->text($user->gender ? 'Laki-laki' : 'perempuan', 350,60, function(){});
+
+        $image->text($user->address, 350, 80, function(){});
 
         $response = Response::make($image->encodeUsingFormat(Format::JPEG));
         $response->header('Content-Type', 'image/jpeg');
