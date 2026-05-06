@@ -39,7 +39,7 @@
            <x-input-label for="gender" :value="__('Gender')" />
            <div class="mt-1 block w-full">
                 <input {{$user->gender ? 'checkhed' : ''}} type="radio" name="gender" id="pria" value="1">
-                <label for="pria" class="text-gray-700 dark:text-gray-300">sLaki-laki</label>
+                <label for="pria" class="text-gray-700 dark:text-gray-300">Laki-laki</label>
                 <input {{!$user->gender ? 'checkhed' : ''}} type="radio" name="gender" id="wanita" value="0">
                 <label for="wanita" class="text-gray-700 dark:text-gray-300">Perempuan</label>
            </div>
@@ -78,6 +78,8 @@
         </div>
 
         <div class="flex items-center gap-4">
+
+            <a class="text-white" href="{{ route('profile.id.card')}}" target="_blank">Undug ID Card</a>
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')

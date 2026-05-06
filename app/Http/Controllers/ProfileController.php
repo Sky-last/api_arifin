@@ -9,9 +9,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\Response;
+use Intervention\Image\Format;
 
 class ProfileController extends Controller
 {
+
+    public function downloadIdCard(){
+        $user = Auth::user();
+        $image = Image::createImage(800 ,450)
+        ->fill('ff0000');
+
+        $response = Response::make($image->encodeUsingFormat(Format::JPEG));
+        $response->header('Content-Type', 'image/jpeg');
+        return $response;
+    }
+
     /**
      * Display the user's profile form.
      */
