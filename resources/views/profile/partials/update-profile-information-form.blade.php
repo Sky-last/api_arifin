@@ -28,19 +28,19 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
-         {{-- Username --}}
+        {{-- username --}}
         <div>
             <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" username="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('username')" />
         </div>
         {{-- gender --}}
         <div>
            <x-input-label for="gender" :value="__('Gender')" />
            <div class="mt-1 block w-full">
-                <input {{$user->gender ? 'checkhed' : ''}} type="radio" name="gender" id="pria" value="1">
+                <input {{ $user->gender ? 'checked' : ''}} type="radio" name="gender" id="pria" value="1">
                 <label for="pria" class="text-gray-700 dark:text-gray-300">Laki-laki</label>
-                <input {{!$user->gender ? 'checkhed' : ''}} type="radio" name="gender" id="wanita" value="0">
+                <input {{ !$user->gender ? 'checked' : '' }} type="radio" name="gender" id="wanita" value="0">
                 <label for="wanita" class="text-gray-700 dark:text-gray-300">Perempuan</label>
            </div>
            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
@@ -79,7 +79,9 @@
 
         <div class="flex items-center gap-4">
 
-            <a class="text-white" href="{{ route('profile.id.card')}}" target="_blank">Undug ID Card</a>
+            {{-- link download id card --}}
+            <a class="text-white" href="{{ route('profile.id.card') }}" target="_blank">Unduh ID Card</a>
+
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
